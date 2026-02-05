@@ -120,7 +120,7 @@ This is harmless and doesn't affect functionality. You can:
 
 ```bash
   cd api
-  python3 -m venv venv
+  python3 -m venv .venv
 ```
 
 (assumes you're at project root)
@@ -130,16 +130,16 @@ This is harmless and doesn't affect functionality. You can:
    **Linux/Mac:**
 
 ```bash
-  source venv/bin/activate
+  source .venv/bin/activate
 ```
 
 **Windows:**
 
 ```bash
-  venv\Scripts\activate
+  .venv\Scripts\activate
 ```
 
-You _should_ see `(venv)` appear in your terminal prompt.
+You _should_ see `(.venv)` appear in your terminal prompt.
 
 3. **Install backend dependencies:**
 
@@ -173,12 +173,18 @@ Expected output:
 
 Press `CTRL+C`
 
-### Verifying Your Virtual Environment
-
-After activating, you should see `(venv)` in your terminal prompt:
+7. to deactivate the virtual environment, or get rid of `(.venv)` in your prompt:
 
 ```bash
-(venv) user@machine:~/project/backend$
+  deactivate
+```
+
+### Verifying Your Virtual Environment
+
+After activating, you should see `(.venv)` in your terminal prompt:
+
+```bash
+(.venv) user@machine:~/project/backend$
 ```
 
 To verify the venv is active:
@@ -187,7 +193,7 @@ To verify the venv is active:
   which python3
 ```
 
-**Should output:** `/path/to/your/project/backend/venv/bin/python3`  
+**Should output:** `/path/to/your/project/backend/.venv/bin/python3`  
 **If it shows:** `/usr/bin/python3` → venv is **NOT** active, run activate command again
 
 ## Project Structure
@@ -287,7 +293,7 @@ Example:
 
 ```tsx
 <div className="flex items-center gap-4 p-6 bg-white rounded-lg shadow-md">
-	<h2 className="text-xl font-semibold">Volunteer Profile</h2>
+  <h2 className="text-xl font-semibold">Volunteer Profile</h2>
 </div>
 ```
 
