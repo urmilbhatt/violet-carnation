@@ -106,7 +106,11 @@ def update_event(
         payload.location if payload.location is not None else row["location"]
     )
     updated_time = payload.time if payload.time is not None else row["time"]
-    updated_organization_id = payload.organization_id if payload.organization_id is not None else row['organization_id']
+    updated_organization_id = (
+        payload.organization_id
+        if payload.organization_id is not None
+        else row["organization_id"]
+    )
 
     conn.execute(
         """
@@ -120,7 +124,7 @@ def update_event(
             updated_location,
             updated_time,
             updated_organization_id,
-            event_id
+            event_id,
         ),
     )
     conn.commit()
@@ -147,7 +151,9 @@ def delete_event(event_id: int, conn=Depends(get_connection)):
         (event_id,),
     ).fetchone()
     if row is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Event not found")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Event not found"
+        )
 
     conn.execute(
         "DELETE FROM events WHERE id = ?",
